@@ -1,0 +1,15 @@
+#using nodeSelector to specify on which node we want our pod to run 
+# in this scenario we have a node in the cluster with a ssd disk, the node is labeled 'label=disk=ssd'
+apiVersion: v1
+kind: Pod
+metadata:
+   name: nginx
+   labels:
+     env: nginx-ssd
+ spec:
+   container:
+   - name: nginx
+     image: nginx
+     imagePullPolicy: IfNotPresent
+   nodeSelector:
+        disk: ssd
